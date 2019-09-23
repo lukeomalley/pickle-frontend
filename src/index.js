@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const getToken = () => {
   return localStorage.getItem('token') ? localStorage.getItem('token') : 'null';
@@ -18,7 +18,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>,
   document.getElementById('root'),
 );

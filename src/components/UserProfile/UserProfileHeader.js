@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { setRem, sizes } from '../../lib/styles';
+import { setRem, sizes } from '../../styles';
 
 const UserProfileHeaderWrapper = styled.div`
   display: grid;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 const FooterWrapper = styled.div`
   height: ${setRem(20)};

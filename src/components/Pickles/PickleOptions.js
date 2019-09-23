@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import PickleOption from './PickleOption';
-import { setRem, media, sizes } from '../../lib/styles';
+import { setRem, sizes } from '../../styles';
 
 const PickleOptionsWrapper = styled.div`
   display: grid;

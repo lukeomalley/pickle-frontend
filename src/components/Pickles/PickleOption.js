@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { setRem, fadeIn } from '../../lib/styles';
+import { setRem, fadeIn } from '../../styles';
 
 const OptionWrapper = styled.div`
   border: 1px solid ${props => props.theme.lightGrey};

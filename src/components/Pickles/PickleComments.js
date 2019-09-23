@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 import PickleComment from './PickleComment';
 
 const PickleCommentsWrapper = styled.div`

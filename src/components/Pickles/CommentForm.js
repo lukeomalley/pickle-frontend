@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 const CommentFormWrapper = styled.form`
   display: flex;
@@ -14,6 +14,10 @@ const CommentFormWrapper = styled.form`
     width: 100%;
     font-family: ${props => props.theme.primaryFont};
     font-size: ${setRem(16)};
+  }
+
+  input[type='text']:focus {
+    outline: none;
   }
 
   button {

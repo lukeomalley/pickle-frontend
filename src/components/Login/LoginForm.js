@@ -1,0 +1,53 @@
+import React, { useState } from 'react';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import styled from 'styled-components';
+
+import SIGN_IN_USER from '../../mutations/SIGN_IN_USER';
+
+const LoginFormWrapper = styled.form``;
+
+const LoginPage = () => {
+  const client = useApolloClient();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [signInUser, { loading, error }] = useMutation(SIGN_IN_USER, {
+    onCompleted({ signInUser: { token } }) {
+      localStorage.setItem('token', token);
+      client.writeData({ data: { isLoggedIn: true } });
+    },
+  });
+
+  const handleLogin = e => {
+    e.preventDefault();
+    signInUser({ variables: { username, password } });
+    setUsername('');
+    setPassword('');
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>An error occurred</p>;
+  return (
+    <LoginFormWrapper>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+    </LoginFormWrapper>
+  );
+};
+
+export default LoginPage;

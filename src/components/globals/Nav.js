@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaAlignRight } from 'react-icons/fa';
 
-import links from '../../lib/navLinks';
-import { setRem } from '../../lib/styles';
+import links from '../../constants/navLinks';
+import { setRem } from '../../styles';
 
 export default function Nav() {
   const [isOpen, setNav] = useState(false);
@@ -17,10 +17,13 @@ export default function Nav() {
     <NavWrapper>
       <div className="nav-center">
         <div className="nav-header">
-          <Link href="/">
-            <a>
-              <h4>🥒 Pickle</h4>
-            </a>
+          <Link to="/">
+            <h4>
+              <span role="img" aria-label="pickle logo">
+                🥒
+              </span>{' '}
+              Pickle
+            </h4>
           </Link>
           <button type="button" className="logo-btn" onClick={toggleNav}>
             <FaAlignRight className="logo-icon" />
@@ -31,9 +34,7 @@ export default function Nav() {
           {links.map((item, index) => {
             return (
               <li key={index}>
-                <Link href={item.path}>
-                  <a>{item.text}</a>
-                </Link>
+                <Link to={item.path}>{item.text}</Link>
               </li>
             );
           })}

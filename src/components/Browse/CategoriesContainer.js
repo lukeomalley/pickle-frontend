@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Category from './Category';
 
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 const CategoriesContainerWrapper = styled.div`
   display: grid;

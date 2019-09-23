@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 const TitleWrapper = styled.h3`
   font-size: ${setRem(30)};

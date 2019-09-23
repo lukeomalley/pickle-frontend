@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { setRem, fadeIn } from '../../lib/styles';
+import { setRem, fadeIn } from '../../styles';
 
 const CategoryWrapper = styled.div`
   padding: ${setRem(20)} ${setRem(36)};
@@ -21,9 +21,9 @@ const CategoryWrapper = styled.div`
 
 const Category = ({ category }) => {
   return (
-    <Link href={`/browse/categories/[category]`} as={`/browse/categories/${category.name}`}>
+    <Link to={`/browse/categories/${category.name}`}>
       <CategoryWrapper>
-        <a>{category.name}</a>
+        <p>{category.name}</p>
       </CategoryWrapper>
     </Link>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 export default styled.hr`
   margin-bottom: ${props => (props.marginBottom ? setRem(props.marginBottom) : setRem(8))};

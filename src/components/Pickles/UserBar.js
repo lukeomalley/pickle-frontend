@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { setRem } from '../../lib/styles';
+import { setRem } from '../../styles';
 
 const UserBarWrapper = styled.div`
   display: flex;
@@ -27,9 +27,7 @@ const UserBar = ({ user }) => {
   return (
     <UserBarWrapper>
       <img src={user.imgUrl} alt={user.name} />
-      <Link href={`/[username]`} as={`/${user.username}`}>
-        <a>{user.username}</a>
-      </Link>
+      <Link to={`/${user.username}`}>{user.username}</Link>
     </UserBarWrapper>
   );
 };

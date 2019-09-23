@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Title from '../globals/Title';
 import Hr from '../globals/HorizontalRule';
 import NewsFeedContainer from '../NewsFeed/NewsFeedContainer';
-import { setRem } from '../../lib/styles';
 
 const CategoryPageHeaderWrapper = styled.div``;
 

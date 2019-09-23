@@ -7,6 +7,11 @@ const Globals = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  a {
+    text-decoration: none;
+    color: ${props => props.theme.primaryFontColor}
+  }
   
   body {
     font-size: 100%;
