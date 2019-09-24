@@ -20,7 +20,7 @@ const CategoryPageContainer = ({ category }) => {
   if (error) return <div>Error</div>;
   return (
     <CategoryPageContainerWrapper>
-      <Title title={category.name} />
+      <Title title="Pickles About " subtitle={category.name} />
       <Hr marginBottom={20} />
       <NewsFeedContainer pickles={filteredPickles()} />
     </CategoryPageContainerWrapper>

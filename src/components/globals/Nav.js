@@ -57,8 +57,8 @@ const Nav = ({ history }) => {
             );
           })}
           {!me && <Link to="/login">Login</Link>}
-          {me && <Link to={`/${me.username}`}>{me.username}</Link>}
           {me && <Link to={`/new/pickle`}>New Pickle</Link>}
+          {me && <Link to={`/${me.username}`}>{me.username}</Link>}
           {me && <a onClick={handleLogout}>Logout</a>}
         </ul>
       </div>
