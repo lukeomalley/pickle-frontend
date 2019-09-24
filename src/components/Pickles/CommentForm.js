@@ -5,6 +5,35 @@ import { useMutation } from '@apollo/react-hooks';
 import CREATE_COMMENT from '../../mutations/CREATE_COMMENT';
 import { setRem } from '../../styles';
 
+// TODO: REFACTOR TO USE UPDATE RATHER THAN REFETCHQUERIES
+const CommentForm = ({ pickle }) => {
+  const [text, setText] = useState('');
+  const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
+    refetchQueries: ['ALL_PICKLE_QUERY', 'USER_QUERY'],
+  });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    createComment({ variables: { pickle_id: parseInt(pickle.id, 10), text } });
+    setText('');
+  };
+
+  const handleChange = e => {
+    setText(e.target.value);
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
+  return (
+    <CommentFormWrapper onSubmit={handleSubmit}>
+      <input type="text" placeholder="Add a comment..." value={text} onChange={handleChange} />
+      <button type="submit" disabled={!text} className={!!text ? 'blue' : ''}>
+        Post
+      </button>
+    </CommentFormWrapper>
+  );
+};
+
 const CommentFormWrapper = styled.form`
   display: flex;
   justify-content: space-between;
@@ -33,32 +62,5 @@ const CommentFormWrapper = styled.form`
     color: ${props => props.theme.accentColor};
   }
 `;
-
-// TODO: REFACTOR TO USE UPDATE RATHER THAN REFETCHQUERIES
-const CommentForm = ({ pickle }) => {
-  const [text, setText] = useState('');
-  const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
-    refetchQueries: ['ALL_PICKLE_QUERY'],
-  });
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    createComment({ variables: { pickle_id: parseInt(pickle.id, 10), text } });
-    setText('');
-  };
-
-  const handleChange = e => {
-    setText(e.target.value);
-  };
-
-  return (
-    <CommentFormWrapper onSubmit={handleSubmit}>
-      <input type="text" placeholder="Add a comment..." value={text} onChange={handleChange} />
-      <button type="submit" disabled={!text} className={!!text ? 'blue' : ''}>
-        Post
-      </button>
-    </CommentFormWrapper>
-  );
-};
 
 export default CommentForm;

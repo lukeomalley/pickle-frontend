@@ -57,6 +57,7 @@ const Nav = ({ history }) => {
             );
           })}
           {me && <Link to={`/${me.username}`}>{me.username}</Link>}
+          {me && <Link to={`/new/pickle`}>New Pickle</Link>}
           {me && <a onClick={handleLogout}>Logout</a>}
         </ul>
       </div>
@@ -70,6 +71,7 @@ const NavWrapper = styled.nav`
   margin-bottom: ${setRem(20)};
   background: ${props => props.theme.mainWhite};
   border-bottom: 1px solid ${props => props.theme.lightGrey};
+
   a {
     cursor: pointer;
   }
@@ -111,7 +113,7 @@ const NavWrapper = styled.nav`
   }
 
   .show-nav {
-    height: 160px;
+    height: 210px;
   }
 
   .nav-links a {

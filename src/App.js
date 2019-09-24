@@ -12,11 +12,13 @@ import LoginPage from './pages/login';
 import BrowsePage from './pages/browse';
 import CategoryPage from './pages/category';
 import ProfilePage from './pages/profile';
+import NewPicklePage from './pages/newPickle';
 import { lightTheme } from './styles';
 
 function App() {
   // This will be used for blocking certian routes
   const { data: me, loading, error } = useQuery(ME);
+  console.log(me);
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />
@@ -27,6 +29,7 @@ function App() {
           path="/browse/categories/:category"
           component={me ? CategoryPage : LoginPage}
         />
+        <Route exact path="/new/pickle" component={me ? NewPicklePage : LoginPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/browse" component={me ? BrowsePage : LoginPage} />
         <Route exact path="/:username" component={me ? ProfilePage : LoginPage} />
