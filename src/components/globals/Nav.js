@@ -18,7 +18,7 @@ const Nav = ({ history }) => {
   };
 
   const handleLogout = () => {
-    localStorage.setItem('token', '');
+    localStorage.removeItem('token');
     client.clearStore();
     history.push('/login');
   };
@@ -111,7 +111,7 @@ const NavWrapper = styled.nav`
   }
 
   .show-nav {
-    height: 125px;
+    height: 160px;
   }
 
   .nav-links a {

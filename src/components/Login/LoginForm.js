@@ -14,7 +14,6 @@ const LoginPage = ({ history }) => {
 
   const [signInUser, { loading, error }] = useMutation(SIGN_IN_USER, {
     onCompleted({ signInUser: { token, user } }) {
-      console.log(token, user);
       localStorage.setItem('token', token);
       client.writeData({ data: { isLoggedIn: true, me: user } });
     },
