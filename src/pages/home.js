@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import NewsFeedContainer from '../components/NewsFeed/NewsFeedContainer';
 import ALL_PICKLE_QUERY from '../queries/ALL_PICKLE_QUERY';
 import { sizes } from '../styles';
+import Nav from '../components/globals/Nav';
 
 const HomeWrapper = styled.div`
   width: ${props => props.theme.mainWidth};
@@ -20,9 +21,12 @@ const HomePage = () => {
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (
-    <HomeWrapper>
-      <NewsFeedContainer pickles={data.pickles} />
-    </HomeWrapper>
+    <>
+      <Nav />
+      <HomeWrapper>
+        <NewsFeedContainer pickles={data.pickles} />
+      </HomeWrapper>
+    </>
   );
 };
 

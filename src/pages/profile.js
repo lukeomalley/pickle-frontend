@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 
+import Nav from '../components/globals/Nav';
 import USER_QUERY from '../queries/USER_QUERY';
 import ProfilePageContainer from '../components/UserProfile/ProfilePageContainer';
 import { sizes } from '../styles';
@@ -21,9 +22,12 @@ const ProfilePage = ({ match }) => {
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (
-    <ProfilePageWrapper>
-      <ProfilePageContainer user={data.user} />
-    </ProfilePageWrapper>
+    <>
+      <Nav />
+      <ProfilePageWrapper>
+        <ProfilePageContainer user={data.user} />
+      </ProfilePageWrapper>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ALL_CATEGORIES_QUERY from '../queries/ALL_CATEGORIES_QUERY';
 import CategoriesContainer from '../components/Browse/CategoriesContainer';
 import Title from '../components/globals/Title';
+import Nav from '../components/globals/Nav';
 
 const BrowsePageWrapper = styled.div`
   width: ${props => props.theme.mainWidth};
@@ -16,10 +17,13 @@ const BrowsePage = () => {
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (
-    <BrowsePageWrapper>
-      <Title title="pickles " subtitle="by category"></Title>
-      <CategoriesContainer categories={data.categories} />
-    </BrowsePageWrapper>
+    <>
+      <Nav />
+      <BrowsePageWrapper>
+        <Title title="pickles " subtitle="by category"></Title>
+        <CategoriesContainer categories={data.categories} />
+      </BrowsePageWrapper>
+    </>
   );
 };
 

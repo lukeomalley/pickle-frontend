@@ -36,7 +36,7 @@ const TextPickleCard = ({ pickle }) => {
       <PickleOptions options={pickle.options} />
       <PickleComments comments={pickle.comments} />
       <Hr />
-      <CommentForm />
+      <CommentForm pickle={pickle} />
     </TextPickleCardWrapper>
   );
 };

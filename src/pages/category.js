@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import CATEGORY_QUERY from '../queries/CATEGORY_QUERY';
 import CategoryPageHeader from '../components/Browse/CategoryPageHeader';
 import { sizes } from '../styles';
+import Nav from '../components/globals/Nav';
 
 const CategoryPageWrapper = styled.div`
   width: ${props => props.theme.mainWidth};
@@ -21,9 +22,12 @@ const CategoryPage = ({ match }) => {
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (
-    <CategoryPageWrapper>
-      <CategoryPageHeader category={data.category} />
-    </CategoryPageWrapper>
+    <>
+      <Nav />
+      <CategoryPageWrapper>
+        <CategoryPageHeader category={data.category} />
+      </CategoryPageWrapper>
+    </>
   );
 };
 

@@ -2,17 +2,35 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaAlignRight } from 'react-icons/fa';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
+import { withRouter } from 'react-router-dom';
 
+import ME from '../../queries/ME_QUERY';
 import links from '../../constants/navLinks';
 import { setRem } from '../../styles';
 
-export default function Nav() {
+const Nav = ({ history }) => {
+  const client = useApolloClient();
   const [isOpen, setNav] = useState(false);
 
   const toggleNav = () => {
     setNav(isOpen => !isOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.setItem('token', '');
+    client.clearStore();
+    history.push('/login');
+  };
+
+  const {
+    data: { me },
+    loading,
+    error,
+  } = useQuery(ME);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
   return (
     <NavWrapper>
       <div className="nav-center">
@@ -38,16 +56,23 @@ export default function Nav() {
               </li>
             );
           })}
+          {me && <Link to={`/${me.username}`}>{me.username}</Link>}
+          {me && <a onClick={handleLogout}>Logout</a>}
         </ul>
       </div>
     </NavWrapper>
   );
-}
+};
+
+export default withRouter(Nav);
 
 const NavWrapper = styled.nav`
   margin-bottom: ${setRem(20)};
   background: ${props => props.theme.mainWhite};
   border-bottom: 1px solid ${props => props.theme.lightGrey};
+  a {
+    cursor: pointer;
+  }
 
   .nav-header {
     display: flex;

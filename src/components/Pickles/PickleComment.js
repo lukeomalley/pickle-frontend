@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { setRem } from '../../styles';
 
 const CommentWrapper = styled.p`
   span {
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
     margin-right: ${setRem(8)};
   }
@@ -14,7 +15,9 @@ const CommentWrapper = styled.p`
 const Comment = ({ comment }) => {
   return (
     <CommentWrapper>
-      <span>{comment.user.username}</span>
+      <span>
+        <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>
+      </span>
       {comment.text}
     </CommentWrapper>
   );
