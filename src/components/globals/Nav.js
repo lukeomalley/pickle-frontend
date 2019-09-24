@@ -123,7 +123,6 @@ const NavWrapper = styled.nav`
     text-transform: capitalize;
     color: var(--mainBlack);
     transition: var(--mainTransition);
-    font-weight: bold;
     letter-spacing: var(--mainSpacing);
   }
   .nav-links a:hover {
