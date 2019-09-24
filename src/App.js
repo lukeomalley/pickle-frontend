@@ -18,7 +18,8 @@ import { lightTheme } from './styles';
 function App() {
   // This will be used for blocking certian routes
   const { data: me, loading, error } = useQuery(ME);
-  console.log(me);
+  if (loading) return null;
+  if (error) return <div>Error</div>;
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />

@@ -1,19 +1,47 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation CREATE_PICKLE($categoryId: Int!, $description: String!) {
-    createPickle(input: { categoryId: $categoryId, description: $description }) {
+  mutation CREATE_PICKLE(
+    $categoryId: Int!
+    $description: String!
+    $optionOne: String
+    $optionTwo: String
+    $optionThree: String
+    $optionFour: String
+  ) {
+    createPickle(
+      input: {
+        categoryId: $categoryId
+        description: $description
+        optionOne: $optionOne
+        optionTwo: $optionTwo
+        optionThree: $optionThree
+        optionFour: $optionFour
+      }
+    ) {
       pickle {
         id
         description
+        category {
+          id
+          name
+        }
+        options {
+          id
+          text
+        }
         user {
           id
           username
           imgUrl
         }
-        category {
+        comments {
           id
-          name
+          text
+          user {
+            id
+            username
+          }
         }
       }
     }

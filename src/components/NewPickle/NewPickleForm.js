@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaArrowRight } from 'react-icons/fa';
 import { useMutation } from '@apollo/react-hooks';
 import { withRouter } from 'react-router-dom';
 
 import Title from '../globals/Title';
-import { setRem, fadeIn } from '../../styles';
+import { setRem, fadeIn, setTransition } from '../../styles';
 import CREATE_PICKLE from '../../mutations/CREATE_PICKLE';
+import ALL_PICKLE_QUERY from '../../queries/ALL_PICKLE_QUERY';
 
 const NewPickleForm = ({ categories, history }) => {
   const [description, setDescription] = useState('');
+  const [optionOne, setOptionOne] = useState('');
+  const [optionTwo, setOptionTwo] = useState('');
+  const [optionThree, setOptionThree] = useState('');
+  const [optionFour, setOptionFour] = useState('');
   const [categoryId, setCategoryId] = useState(0);
-  const [createPickle, { data, loading }] = useMutation(CREATE_PICKLE, {
+
+  const [createPickle, { error, loading }] = useMutation(CREATE_PICKLE, {
     onCompleted({ createPickle: { pickle } }) {
-      setDescription('');
-      setCategoryId(0);
-      history.push(`/pickle/edit/${pickle.id}`);
+      history.push(`/${pickle.user.username}`);
     },
   });
 
@@ -23,9 +26,23 @@ const NewPickleForm = ({ categories, history }) => {
     e.preventDefault();
     console.log(categoryId, description);
     let cat = parseInt(categoryId, 10);
-    createPickle({ variables: { categoryId: cat, description } });
+    createPickle({
+      variables: { categoryId: cat, description, optionOne, optionTwo, optionThree, optionFour },
+      update: (store, { data }) => {
+        const { pickles } = store.readQuery({ query: ALL_PICKLE_QUERY });
+        debugger;
+        store.writeQuery({
+          query: ALL_PICKLE_QUERY,
+          data: {
+            pickles: [...pickles, data.createPickle.pickle],
+          },
+        });
+      },
+    });
   };
 
+  if (loading) return null;
+  if (error) return <div>Error</div>;
   return (
     <NewPickleFormWrapper onSubmit={handleSubmit}>
       <Title title="In A Pickle " subtitle="Again, Are We?" />
@@ -35,6 +52,7 @@ const NewPickleForm = ({ categories, history }) => {
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
+
       <div className="categories">
         <p>Category</p>
         {categories.map(category => (
@@ -50,9 +68,45 @@ const NewPickleForm = ({ categories, history }) => {
           </label>
         ))}
       </div>
-      <button type="submit">
-        Continue <FaArrowRight />
-      </button>
+
+      <p>Options</p>
+      <input
+        type="text"
+        name="option"
+        value={optionOne}
+        placeholder="Option"
+        onChange={e => {
+          setOptionOne(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        name="option"
+        value={optionTwo}
+        placeholder="Option"
+        onChange={e => {
+          setOptionTwo(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        name="option"
+        value={optionThree}
+        placeholder="Option"
+        onChange={e => {
+          setOptionThree(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        name="option"
+        value={optionFour}
+        placeholder="Option"
+        onChange={e => {
+          setOptionFour(e.target.value);
+        }}
+      />
+      <button type="submit">Post Pickle</button>
     </NewPickleFormWrapper>
   );
 };
@@ -80,13 +134,15 @@ const NewPickleFormWrapper = styled.form`
     width: 50%;
     margin: 0 auto;
     font-size: ${setRem(12)};
-    border: 1px solid ${props => props.theme.lightGrey};
     padding: ${setRem(12)} ${setRem(32)};
     cursor: pointer;
+    background: ${props => props.theme.mainBlack};
+    color: ${props => props.theme.mainWhite};
+    ${setTransition()};
     ${fadeIn('0%', '0%', '0%', 0.8)}
 
     &:hover {
-      background: ${props => props.theme.lightGrey};
+      background: ${props => props.theme.accentColor};
     }
   }
 
