@@ -3,6 +3,7 @@ import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
+import Error from '../globals/Error';
 import SIGN_IN_USER from '../../mutations/SIGN_IN_USER';
 import { setRem, fadeIn } from '../../styles';
 
@@ -13,6 +14,7 @@ const LoginPage = ({ history }) => {
 
   const [signInUser, { loading, error }] = useMutation(SIGN_IN_USER, {
     onCompleted({ signInUser: { token, user } }) {
+      history.push('/');
       client.resetStore();
       localStorage.setItem('token', token);
       client.writeData({ data: { isLoggedIn: true, me: user } });
@@ -24,20 +26,19 @@ const LoginPage = ({ history }) => {
     signInUser({ variables: { username, password } });
     setUsername('');
     setPassword('');
-    history.push('/');
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>An error occurred</p>;
   return (
     <LoginFormWrapper onSubmit={handleLogin}>
       <h3>Login</h3>
+      {error && <Error message="Incorrect username or password" />}
       <input
         type="text"
         name="username"
         placeholder="username"
         value={username}
         onChange={e => setUsername(e.target.value)}
+        required
       />
       <input
         type="password"
@@ -45,6 +46,7 @@ const LoginPage = ({ history }) => {
         placeholder="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
+        required
       />
       <button type="submit">Login</button>
     </LoginFormWrapper>

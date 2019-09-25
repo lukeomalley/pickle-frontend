@@ -4,6 +4,8 @@ export const lightTheme = {
   primaryColor: '#',
   secondaryColor: '#888',
   accentColor: '#5ab082',
+  errorColor: '#ffb1b1',
+  errorTextColor: '#ff0000',
   primaryFontColor: '#222',
   mainBlack: '#222',
   mainWhite: '#fff',

@@ -19,7 +19,7 @@ function App() {
   // This will be used for blocking certian routes
   const { data: me, loading, error } = useQuery(ME);
   if (loading) return null;
-  if (error) return <div>Error</div>;
+  if (error) return null;
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />
