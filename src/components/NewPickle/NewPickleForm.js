@@ -24,13 +24,11 @@ const NewPickleForm = ({ categories, history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(categoryId, description);
     let cat = parseInt(categoryId, 10);
     createPickle({
       variables: { categoryId: cat, description, optionOne, optionTwo, optionThree, optionFour },
       update: (store, { data }) => {
         const { pickles } = store.readQuery({ query: ALL_PICKLE_QUERY });
-        debugger;
         store.writeQuery({
           query: ALL_PICKLE_QUERY,
           data: {

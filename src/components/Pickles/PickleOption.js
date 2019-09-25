@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { setRem, fadeIn } from '../../styles';
+import { useMutation } from '@apollo/react-hooks';
+
+import CREATE_SELECTION from '../../mutations/CREATE_SELECTION';
 
 const OptionWrapper = styled.div`
   border: 1px solid ${props => props.theme.lightGrey};
@@ -14,8 +17,19 @@ const OptionWrapper = styled.div`
 `;
 
 const PickleOption = ({ option }) => {
+  const [createSelection, { data, loading }] = useMutation(CREATE_SELECTION, {
+    refetchQueries: ['ME'],
+  });
+
+  const handleClick = () => {
+    let id = parseInt(option.id);
+    createSelection({
+      variables: { optionId: id },
+    });
+  };
+
   return (
-    <OptionWrapper>
+    <OptionWrapper onClick={handleClick}>
       <div>{option.text}</div>
     </OptionWrapper>
   );

@@ -5,7 +5,7 @@ import { FaAlignRight } from 'react-icons/fa';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { withRouter } from 'react-router-dom';
 
-import ME from '../../queries/ME_QUERY';
+import ME_QUERY from '../../queries/ME_QUERY';
 import links from '../../constants/navLinks';
 import { setRem } from '../../styles';
 
@@ -27,9 +27,9 @@ const Nav = ({ history }) => {
     data: { me },
     loading,
     error,
-  } = useQuery(ME);
+  } = useQuery(ME_QUERY);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return null;
   if (error) return <div>Error...</div>;
   return (
     <NavWrapper>

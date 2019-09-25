@@ -6,6 +6,10 @@ export default gql`
       id
       name
       username
+      votedPickles {
+        id
+        description
+      }
     }
   }
 `;

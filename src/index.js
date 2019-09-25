@@ -9,7 +9,7 @@ import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = createHttpLink({
-  uri: 'https://pickle-api.herokuapp.com/api/v1/graphql',
+  uri: 'http://localhost:3000/api/v1/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

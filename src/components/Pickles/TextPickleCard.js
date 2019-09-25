@@ -22,14 +22,21 @@ const TextPickleCardWrapper = styled.div`
     margin-bottom: ${setRem(10)};
   }
 
+  .green {
+    background: green;
+  }
+
   @media (max-width: ${sizes.desktop}px) {
     width: 100%;
   }
 `;
 
-const TextPickleCard = ({ pickle }) => {
+const TextPickleCard = ({ pickle, votedPickles }) => {
+  // votedPickles contains hash of the pickles that a user has voted on this will be
+  // used to conditionally render options with results
   return (
     <TextPickleCardWrapper>
+      {pickle.id in votedPickles ? <p>You voted on this pickle</p> : null}
       <UserBar user={pickle.user} />
       <Hr />
       <p className="description">{pickle.description}</p>
