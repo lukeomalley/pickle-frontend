@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Title from '../components/globals/Title';
 import LoginForm from '../components/Login/LoginForm';
 import SignupForm from '../components/Login/SignupForm';
-import { setRem } from '../styles';
+import { setRem, sizes } from '../styles';
 
 const LoginPageWrapper = styled.div`
   display: grid;
@@ -12,6 +12,10 @@ const LoginPageWrapper = styled.div`
   grid-template-columns: 1fr;
   width: ${props => props.theme.mainWidth};
   margin: 0 auto;
+
+  @media (max-width: ${sizes.phablet}px) {
+    width: 100vw;
+  }
 `;
 
 const LoginPage = () => {

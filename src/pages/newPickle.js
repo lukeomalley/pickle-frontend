@@ -4,8 +4,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import ALL_CATEGORIES_QUERY from '../queries/ALL_CATEGORIES_QUERY';
 import NewPickleForm from '../components/NewPickle/NewPickleForm';
-import { sizes } from '../styles';
 import Nav from '../components/globals/Nav';
+import { sizes } from '../styles';
 
 const NewPicklePageWrapper = styled.div`
   width: ${props => props.theme.mainWidth};

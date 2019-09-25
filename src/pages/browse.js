@@ -6,10 +6,15 @@ import ALL_CATEGORIES_QUERY from '../queries/ALL_CATEGORIES_QUERY';
 import CategoriesContainer from '../components/Browse/CategoriesContainer';
 import Title from '../components/globals/Title';
 import Nav from '../components/globals/Nav';
+import { sizes } from '../styles';
 
 const BrowsePageWrapper = styled.div`
   width: ${props => props.theme.mainWidth};
   margin: 0 auto;
+
+  @media (max-width: ${sizes.phablet}px) {
+    width: 100vw;
+  }
 `;
 
 const BrowsePage = () => {
