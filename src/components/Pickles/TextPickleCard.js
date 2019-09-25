@@ -11,7 +11,8 @@ import { setRem, sizes } from '../../styles';
 const TextPickleCardWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  width: 50%;
+  width: 70%;
+  max-width: 800px;
   margin: 0 auto;
   padding: ${setRem(16)};
   border: 1px solid ${props => props.theme.lightGrey};

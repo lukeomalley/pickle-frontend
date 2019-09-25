@@ -5,16 +5,15 @@ import { useMutation } from '@apollo/react-hooks';
 import CREATE_COMMENT from '../../mutations/CREATE_COMMENT';
 import { setRem } from '../../styles';
 
-// TODO: REFACTOR TO USE UPDATE RATHER THAN REFETCHQUERIES
 const CommentForm = ({ pickle }) => {
   const [text, setText] = useState('');
-  const [createComment, { loading, error }] = useMutation(CREATE_COMMENT, {
-    refetchQueries: ['ALL_PICKLE_QUERY', 'USER_QUERY'],
-  });
+  const [createComment, { loading, error }] = useMutation(CREATE_COMMENT);
 
   const handleSubmit = e => {
     e.preventDefault();
-    createComment({ variables: { pickle_id: parseInt(pickle.id, 10), text } });
+    createComment({
+      variables: { pickle_id: parseInt(pickle.id, 10), text },
+    });
     setText('');
   };
 

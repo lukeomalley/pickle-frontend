@@ -3,14 +3,30 @@ import gql from 'graphql-tag';
 export default gql`
   mutation CREATE_COMMENT($pickle_id: Int!, $text: String!) {
     createComment(input: { pickleId: $pickle_id, text: $text }) {
-      comment {
+      pickle {
         id
-        text
+        description
+        category {
+          id
+          name
+        }
+        options {
+          id
+          text
+          percentage
+        }
         user {
           id
-          imgUrl
-          name
           username
+          imgUrl
+        }
+        comments {
+          id
+          text
+          user {
+            id
+            username
+          }
         }
       }
     }
