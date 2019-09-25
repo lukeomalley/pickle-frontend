@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import PickleOption from './PickleOption';
+import PickleOptionVoted from './PickleOptionVoted';
 import { setRem, sizes } from '../../styles';
 
 const PickleOptionsWrapper = styled.div`
@@ -15,12 +16,12 @@ const PickleOptionsWrapper = styled.div`
   }
 `;
 
-const PickleOptions = ({ options }) => {
+const PickleOptions = ({ options, voted }) => {
   return (
     <PickleOptionsWrapper>
-      {options.map(option => (
-        <PickleOption key={option.id} option={option} />
-      ))}
+      {voted
+        ? options.map(option => <PickleOptionVoted key={option.id} option={option} />)
+        : options.map(option => <PickleOption key={option.id} option={option} />)}
     </PickleOptionsWrapper>
   );
 };

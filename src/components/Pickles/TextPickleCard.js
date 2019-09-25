@@ -34,13 +34,13 @@ const TextPickleCardWrapper = styled.div`
 const TextPickleCard = ({ pickle, votedPickles }) => {
   // votedPickles contains hash of the pickles that a user has voted on this will be
   // used to conditionally render options with results
+  let voted = pickle.id in votedPickles;
   return (
     <TextPickleCardWrapper>
-      {pickle.id in votedPickles ? <p>You voted on this pickle</p> : null}
       <UserBar user={pickle.user} />
       <Hr />
       <p className="description">{pickle.description}</p>
-      <PickleOptions options={pickle.options} />
+      <PickleOptions options={pickle.options} voted={voted} />
       <PickleComments comments={pickle.comments} />
       <Hr />
       <CommentForm pickle={pickle} />
