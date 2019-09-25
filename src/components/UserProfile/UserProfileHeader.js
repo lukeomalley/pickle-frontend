@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import profilePic from '../../static/defaultProfile.png';
 
 import { setRem, sizes } from '../../styles';
 
@@ -46,7 +47,7 @@ const UserProfileHeaderWrapper = styled.div`
 const UserProfileHeader = ({ user, pickles }) => {
   return (
     <UserProfileHeaderWrapper>
-      <img src={user.imgUrl} alt="" />
+      <img src={user.imgUrl || profilePic} alt="" />
       <div className="details">
         <p className="username">{user.username}</p>
         <p>{pickles.length} Pickles</p>
