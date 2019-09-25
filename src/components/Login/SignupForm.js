@@ -10,6 +10,8 @@ const SignupForm = ({ history }) => {
   const client = useApolloClient();
   const [createUser, { loading, error }] = useMutation(CREATE_USER, {
     onCompleted({ createUser: { errors, token, user } }) {
+      history.push('/');
+      client.resetStore();
       localStorage.setItem('token', token);
       client.writeData({ data: { isLoggedIn: true, me: user } });
     },
@@ -24,7 +26,6 @@ const SignupForm = ({ history }) => {
     setName('');
     setUsername('');
     setPassword('');
-    history.push('/');
   };
 
   if (loading) return <p>Loading...</p>;
@@ -39,6 +40,7 @@ const SignupForm = ({ history }) => {
         placeholder="name"
         value={name}
         onChange={e => setName(e.target.value)}
+        required
       />
 
       <input
@@ -47,6 +49,7 @@ const SignupForm = ({ history }) => {
         placeholder="username"
         value={username}
         onChange={e => setUsername(e.target.value)}
+        required
       />
 
       <input
@@ -55,6 +58,7 @@ const SignupForm = ({ history }) => {
         placeholder="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
+        required
       />
       <button type="submit">Sign Up</button>
     </SignupFormWrapper>
