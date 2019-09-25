@@ -8,31 +8,6 @@ export default gql`
       username
       bio
       imgUrl
-      pickles {
-        id
-        description
-        category {
-          id
-          name
-        }
-        options {
-          id
-          text
-        }
-        user {
-          id
-          username
-          imgUrl
-        }
-        comments {
-          id
-          text
-          user {
-            id
-            username
-          }
-        }
-      }
     }
   }
 `;

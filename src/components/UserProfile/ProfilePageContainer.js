@@ -17,7 +17,7 @@ const ProfilePageContainer = ({ user }) => {
   if (error) return <div>Error</div>;
   return (
     <>
-      <UserProfileHeader user={user} />
+      <UserProfileHeader user={user} pickles={filteredPickles()} />
       <Hr marginBottom={20} />
       <NewsFeedContainer pickles={filteredPickles()} />
     </>

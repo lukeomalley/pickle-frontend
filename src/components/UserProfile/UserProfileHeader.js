@@ -43,13 +43,13 @@ const UserProfileHeaderWrapper = styled.div`
   }
 `;
 
-const UserProfileHeader = ({ user }) => {
+const UserProfileHeader = ({ user, pickles }) => {
   return (
     <UserProfileHeaderWrapper>
       <img src={user.imgUrl} alt="" />
       <div className="details">
         <p className="username">{user.username}</p>
-        <p>{user.pickles.length} Pickles</p>
+        <p>{pickles.length} Pickles</p>
         <p>{user.bio}</p>
       </div>
     </UserProfileHeaderWrapper>

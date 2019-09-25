@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 
-import CATEGORY_QUERY from '../queries/CATEGORY_QUERY';
+import ALL_CATEGORIES_QUERY from '../queries/ALL_CATEGORIES_QUERY';
 import CategoryPageContainer from '../components/Browse/CategoryPageContainer';
 import { sizes } from '../styles';
 import Nav from '../components/globals/Nav';
@@ -18,14 +18,17 @@ const CategoryPageWrapper = styled.div`
 
 const CategoryPage = ({ match }) => {
   const { category } = match.params;
-  const { loading, data, error } = useQuery(CATEGORY_QUERY, { variables: { name: category } });
+  const { loading, data, error } = useQuery(ALL_CATEGORIES_QUERY);
+
+  const filterCategory = () => data.categories.find(currCategory => currCategory.name === category);
+
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (
     <>
       <Nav />
       <CategoryPageWrapper>
-        <CategoryPageContainer category={data.category} />
+        <CategoryPageContainer category={filterCategory()} />
       </CategoryPageWrapper>
     </>
   );

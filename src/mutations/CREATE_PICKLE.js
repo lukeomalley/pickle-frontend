@@ -29,6 +29,7 @@ export default gql`
         options {
           id
           text
+          percentage
         }
         user {
           id
