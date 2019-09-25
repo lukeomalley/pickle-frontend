@@ -11,7 +11,7 @@ const CategoryPageWrapper = styled.div`
   width: ${props => props.theme.mainWidth};
   margin: 0 auto;
 
-  @media (max-width: ${sizes.phone}px) {
+  @media (max-width: ${sizes.phablet}px) {
     width: 100vw;
   }
 `;
