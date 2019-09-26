@@ -41,6 +41,7 @@ const SignupForm = ({ history }) => {
         value={name}
         onChange={e => setName(e.target.value)}
         required
+        maxLength="40"
       />
 
       <input
@@ -50,6 +51,7 @@ const SignupForm = ({ history }) => {
         value={username}
         onChange={e => setUsername(e.target.value)}
         required
+        maxLength="40"
       />
 
       <input
@@ -59,6 +61,7 @@ const SignupForm = ({ history }) => {
         value={password}
         onChange={e => setPassword(e.target.value)}
         required
+        maxLength="40"
       />
       <button type="submit">Sign Up</button>
     </SignupFormWrapper>
