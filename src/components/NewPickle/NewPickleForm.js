@@ -49,6 +49,7 @@ const NewPickleForm = ({ categories, history }) => {
         placeholder="Whats your pickle..?"
         value={description}
         onChange={e => setDescription(e.target.value)}
+        required
       />
 
       <div className="categories">
@@ -60,6 +61,7 @@ const NewPickleForm = ({ categories, history }) => {
               name="category"
               value={category.id}
               checked={categoryId === category.id}
+              required
               onChange={() => setCategoryId(category.id)}
             />
             {category.name}
@@ -73,6 +75,7 @@ const NewPickleForm = ({ categories, history }) => {
         name="option"
         value={optionOne}
         placeholder="Option"
+        maxLength="40"
         onChange={e => {
           setOptionOne(e.target.value);
         }}
@@ -82,6 +85,7 @@ const NewPickleForm = ({ categories, history }) => {
         name="option"
         value={optionTwo}
         placeholder="Option"
+        maxLength="40"
         onChange={e => {
           setOptionTwo(e.target.value);
         }}
@@ -91,6 +95,7 @@ const NewPickleForm = ({ categories, history }) => {
         name="option"
         value={optionThree}
         placeholder="Option"
+        maxLength="40"
         onChange={e => {
           setOptionThree(e.target.value);
         }}
@@ -100,6 +105,7 @@ const NewPickleForm = ({ categories, history }) => {
         name="option"
         value={optionFour}
         placeholder="Option"
+        maxLength="40"
         onChange={e => {
           setOptionFour(e.target.value);
         }}

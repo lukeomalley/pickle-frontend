@@ -25,7 +25,13 @@ const CommentForm = ({ pickle }) => {
   if (error) return <div>Error</div>;
   return (
     <CommentFormWrapper onSubmit={handleSubmit}>
-      <input type="text" placeholder="Add a comment..." value={text} onChange={handleChange} />
+      <input
+        type="text"
+        placeholder="Add a comment..."
+        value={text}
+        onChange={handleChange}
+        maxLength="80"
+      />
       <button type="submit" disabled={!text} className={!!text ? 'blue' : ''}>
         Post
       </button>
