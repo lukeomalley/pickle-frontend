@@ -4,17 +4,25 @@ import { useMutation } from '@apollo/react-hooks';
 
 import CREATE_COMMENT from '../../mutations/CREATE_COMMENT';
 import { setRem } from '../../styles';
+import RequireLoginModal from '../globals/RequireLoginModal';
+import { useModal } from '../globals/useModal';
 
 const CommentForm = ({ pickle }) => {
+  const { isShowing, toggle } = useModal();
   const [text, setText] = useState('');
   const [createComment, { loading, error }] = useMutation(CREATE_COMMENT);
 
   const handleSubmit = e => {
     e.preventDefault();
-    createComment({
-      variables: { pickle_id: parseInt(pickle.id, 10), text },
-    });
-    setText('');
+    if (!localStorage.getItem('token')) {
+      setText('');
+      toggle();
+    } else {
+      createComment({
+        variables: { pickle_id: parseInt(pickle.id, 10), text },
+      });
+      setText('');
+    }
   };
 
   const handleChange = e => {
@@ -35,6 +43,11 @@ const CommentForm = ({ pickle }) => {
       <button type="submit" disabled={!text} className={!!text ? 'blue' : ''}>
         Post
       </button>
+      <RequireLoginModal
+        message="You must be logged in to comment on a pickle"
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </CommentFormWrapper>
   );
 };
