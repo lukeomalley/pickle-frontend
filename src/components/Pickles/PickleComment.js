@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { setRem } from '../../styles';
 
 const CommentWrapper = styled.p`
+  overflow-wrap: break-word;
   span {
     font-weight: bolder;
     cursor: pointer;

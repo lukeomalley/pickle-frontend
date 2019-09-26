@@ -30,7 +30,7 @@ const CommentForm = ({ pickle }) => {
         placeholder="Add a comment..."
         value={text}
         onChange={handleChange}
-        maxLength="80"
+        maxLength="100"
       />
       <button type="submit" disabled={!text} className={!!text ? 'blue' : ''}>
         Post
