@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useModal } from '../globals/useModal';
-import RequireLoginModal from '../globals/RequireLoginModal';
 import UserBar from './UserBar';
 import PickleOptions from './PickleOptions';
 import PickleComments from './PickleComments';
@@ -31,8 +29,6 @@ const TextPickleCardWrapper = styled.div`
 `;
 
 const TextPickleCard = ({ pickle, votedPickles }) => {
-  // votedPickles contains hash of the pickles that a user has voted on this will be
-  // used to conditionally render options with results
   let voted = pickle.id in votedPickles;
   return (
     <TextPickleCardWrapper>

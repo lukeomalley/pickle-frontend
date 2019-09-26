@@ -20,7 +20,7 @@ const OptionWrapper = styled.div`
 
 const PickleOption = ({ option }) => {
   const { isShowing, toggle } = useModal();
-  const [createSelection, { data, loading }] = useMutation(CREATE_SELECTION, {
+  const [createSelection] = useMutation(CREATE_SELECTION, {
     refetchQueries: ['ME'],
   });
 

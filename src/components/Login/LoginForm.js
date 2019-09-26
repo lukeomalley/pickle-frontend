@@ -12,7 +12,7 @@ const LoginPage = ({ history }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [signInUser, { loading, error }] = useMutation(SIGN_IN_USER, {
+  const [signInUser, { error }] = useMutation(SIGN_IN_USER, {
     onCompleted({ signInUser: { token, user } }) {
       history.push('/');
       client.resetStore();
