@@ -16,6 +16,7 @@ const UserBarWrapper = styled.div`
   }
 
   a {
+    font-weight: bold;
     text-decoration: none;
     color: ${props => props.theme.primaryFontColor};
     justify-self: start;
