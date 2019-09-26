@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { setRem, fadeIn } from '../../styles';
 import { useMutation } from '@apollo/react-hooks';
 
+import { useModal } from '../globals/useModal';
+import RequireLoginModal from '../globals/RequireLoginModal';
 import CREATE_SELECTION from '../../mutations/CREATE_SELECTION';
 
 const OptionWrapper = styled.div`
@@ -17,20 +19,30 @@ const OptionWrapper = styled.div`
 `;
 
 const PickleOption = ({ option }) => {
+  const { isShowing, toggle } = useModal();
   const [createSelection, { data, loading }] = useMutation(CREATE_SELECTION, {
     refetchQueries: ['ME'],
   });
 
   const handleClick = () => {
-    let id = parseInt(option.id);
-    createSelection({
-      variables: { optionId: id },
-    });
+    if (!localStorage.getItem('token')) {
+      toggle();
+    } else {
+      let id = parseInt(option.id);
+      createSelection({
+        variables: { optionId: id },
+      });
+    }
   };
 
   return (
     <OptionWrapper onClick={handleClick}>
       <div>{option.text}</div>
+      <RequireLoginModal
+        message="You must be logged in to vote on a pickle"
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </OptionWrapper>
   );
 };

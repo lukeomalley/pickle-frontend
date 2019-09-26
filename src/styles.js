@@ -3,7 +3,7 @@ import { css, keyframes } from 'styled-components';
 export const lightTheme = {
   primaryColor: '#',
   secondaryColor: '#888',
-  accentColor: '#5ab082',
+  accentColor: '#aedb8c',
   errorColor: '#ffb1b1',
   errorTextColor: '#ff0000',
   primaryFontColor: '#222',

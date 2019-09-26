@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useModal } from '../globals/useModal';
+import RequireLoginModal from '../globals/RequireLoginModal';
 import UserBar from './UserBar';
 import PickleOptions from './PickleOptions';
 import PickleComments from './PickleComments';
