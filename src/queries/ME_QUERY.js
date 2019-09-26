@@ -10,6 +10,9 @@ export default gql`
         id
         description
       }
+      options {
+        id
+      }
     }
   }
 `;

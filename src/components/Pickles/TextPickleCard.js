@@ -23,10 +23,6 @@ const TextPickleCardWrapper = styled.div`
     margin-bottom: ${setRem(10)};
   }
 
-  .green {
-    background: green;
-  }
-
   @media (max-width: ${sizes.desktop}px) {
     width: 100%;
   }

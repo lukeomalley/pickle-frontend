@@ -7,17 +7,14 @@ const OptionWrapper = styled.div`
   justify-content: space-between;
   border: 1px solid ${props => props.theme.lightGrey};
   padding: ${setRem(16)} ${setRem(32)};
-  cursor: pointer;
-  ${fadeIn('0%', '0%', '0%', 0.8)}
 
-  &:hover {
-    background: ${props => props.theme.lightGrey};
-  }
+  ${fadeIn('0%', '0%', '0%', 0.8)}
 `;
 
-const PickleOption = ({ option }) => {
+const PickleOption = ({ option, selectedOptions }) => {
+  const selected = option.id in selectedOptions;
   return (
-    <OptionWrapper>
+    <OptionWrapper className={selected && 'green'}>
       <div>{option.text}</div>
       <div>{option.percentage}%</div>
     </OptionWrapper>

@@ -16,9 +16,7 @@ const NewsFeedContainer = ({ pickles }) => {
   const { me } = data;
 
   const createVotedPicklesHash = () => {
-    if (!me) {
-      return {};
-    }
+    if (!me) return {};
     const votedPickles = {};
     for (let pickle of me.votedPickles) {
       if (pickle.id in votedPickles) {
