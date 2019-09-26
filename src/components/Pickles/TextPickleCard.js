@@ -6,7 +6,7 @@ import PickleOptions from './PickleOptions';
 import PickleComments from './PickleComments';
 import CommentForm from './CommentForm';
 import Hr from '../globals/HorizontalRule';
-import { setRem, sizes } from '../../styles';
+import { setRem, sizes, setTransition } from '../../styles';
 
 const TextPickleCardWrapper = styled.div`
   display: grid;

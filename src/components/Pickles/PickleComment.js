@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { setRem } from '../../styles';
+import { setRem, fadeIn } from '../../styles';
 
 const CommentWrapper = styled.p`
   overflow-wrap: break-word;
+  ${fadeIn('0%', '0%', '0%', 0.2)}
   span {
     font-weight: bolder;
     cursor: pointer;
