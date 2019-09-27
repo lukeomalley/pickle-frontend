@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 import ME_QUERY from '../../queries/ME_QUERY';
 import links from '../../constants/navLinks';
-import { setRem } from '../../styles';
+import { setRem, setTransition } from '../../styles';
 
 const Nav = ({ history }) => {
   const client = useApolloClient();
@@ -30,7 +30,7 @@ const Nav = ({ history }) => {
   } = useQuery(ME_QUERY);
 
   if (loading) return null;
-  if (error) return <div>Error...</div>;
+  if (error) return null;
   return (
     <NavWrapper>
       <div className="nav-center">
@@ -59,7 +59,7 @@ const Nav = ({ history }) => {
           {!me && <Link to="/login">Login</Link>}
           {me && <Link to={`/new/pickle`}>New Pickle</Link>}
           {me && <Link to={`/${me.username}`}>{me.username}</Link>}
-          {me && <a onClick={handleLogout}>Logout</a>}
+          {me && <p onClick={handleLogout}>Logout</p>}
         </ul>
       </div>
     </NavWrapper>
@@ -73,7 +73,8 @@ const NavWrapper = styled.nav`
   background: ${props => props.theme.mainWhite};
   border-bottom: 1px solid ${props => props.theme.lightGrey};
 
-  a {
+  a,
+  p {
     cursor: pointer;
   }
 
@@ -117,17 +118,18 @@ const NavWrapper = styled.nav`
     height: 210px;
   }
 
-  .nav-links a {
+  .nav-links a,
+  p {
     display: grid;
     padding: 1rem 1.25rem;
     text-decoration: none;
     text-transform: capitalize;
-    color: var(--mainBlack);
-    transition: var(--mainTransition);
-    letter-spacing: var(--mainSpacing);
+    color: ${props => props.theme.mainBlack};
+    ${setTransition}
   }
-  .nav-links a:hover {
-    color: var(--primaryColor);
+  .nav-links a:hover,
+  p:hover {
+    color: ${props => props.theme.accentColor};
   }
 
   @media screen and (min-width: 576px) {

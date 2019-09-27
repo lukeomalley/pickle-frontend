@@ -5,6 +5,8 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 
+import ME_QUERY from '../src/queries/ME_QUERY';
+
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import BrowsePage from './pages/browse';
@@ -12,11 +14,12 @@ import CategoryPage from './pages/category';
 import ProfilePage from './pages/profile';
 import NewPicklePage from './pages/newPickle';
 import { lightTheme } from './styles';
-import ME_QUERY from '../src/queries/ME_QUERY';
 
 function App() {
+  const { loading, error } = useQuery(ME_QUERY);
   const token = localStorage.getItem('token');
-  useQuery(ME_QUERY);
+  if (loading) return null;
+  if (error) return null;
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />

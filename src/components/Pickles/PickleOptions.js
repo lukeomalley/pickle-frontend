@@ -25,8 +25,6 @@ const PickleOptionsWrapper = styled.div`
 const PickleOptions = ({ options, voted }) => {
   const {
     data: { me },
-    loading,
-    error,
   } = useQuery(ME_QUERY);
 
   const createSelectedOptionsHash = () => {
