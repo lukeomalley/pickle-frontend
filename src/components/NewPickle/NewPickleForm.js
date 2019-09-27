@@ -51,22 +51,13 @@ const NewPickleForm = ({ categories, history }) => {
         onChange={e => setDescription(e.target.value)}
         required
       />
-
+      <p>Category</p>
       <div className="categories">
-        <p>Category</p>
-        {categories.map(category => (
-          <label key={category.id}>
-            <input
-              type="radio"
-              name="category"
-              value={category.id}
-              checked={categoryId === category.id}
-              required
-              onChange={() => setCategoryId(category.id)}
-            />
-            {category.name}
-          </label>
-        ))}
+        <select name="category" value={categoryId} onChange={e => setCategoryId(e.target.value)}>
+          {categories.map(category => (
+            <option value={category.id}>{category.name}</option>
+          ))}
+        </select>
       </div>
 
       <p>Options</p>
@@ -123,7 +114,7 @@ const NewPickleFormWrapper = styled.form`
   margin: 0 auto;
 
   input[type='text'] {
-    padding: ${setRem(8)};
+    padding: ${setRem(16)};
     border: none;
     width: 100%;
     font-family: ${props => props.theme.primaryFont};
