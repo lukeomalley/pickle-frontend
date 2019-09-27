@@ -6,6 +6,8 @@ export default gql`
       id
       name
       username
+      bio
+      imgUrl
       votedPickles {
         id
         description
