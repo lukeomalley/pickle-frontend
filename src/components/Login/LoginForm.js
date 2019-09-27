@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
 import Error from '../globals/Error';
+import { PrimaryButton } from '../globals/Buttons';
 import SIGN_IN_USER from '../../mutations/SIGN_IN_USER';
 import { setRem, fadeIn } from '../../styles';
 
@@ -48,7 +49,7 @@ const LoginPage = ({ history }) => {
         onChange={e => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Login</button>
+      <PrimaryButton type="submit">Login</PrimaryButton>
     </LoginFormWrapper>
   );
 };
@@ -57,19 +58,20 @@ const LoginFormWrapper = styled.form`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${setRem(20)};
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
 
   input[type='text'],
   input[type='password'] {
-    padding: ${setRem(8)};
+    padding: ${setRem(16)};
     border: none;
     width: 100%;
     font-family: ${props => props.theme.primaryFont};
     font-size: ${setRem(16)};
   }
 
-  input[type='text']:focus {
+  input[type='text']:focus,
+  input[type='password']:focus {
     outline: none;
   }
 

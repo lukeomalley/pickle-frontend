@@ -11,7 +11,12 @@ const LoginPageWrapper = styled.div`
   grid-gap: ${setRem(50)};
   grid-template-columns: 1fr;
   width: ${props => props.theme.mainWidth};
-  margin: 0 auto;
+  margin: ${setRem(50)} auto;
+
+  h1 {
+    font-size: ${setRem(50)};
+    text-align: center;
+  }
 
   @media (max-width: ${sizes.phablet}px) {
     width: 100vw;
@@ -21,7 +26,7 @@ const LoginPageWrapper = styled.div`
 const LoginPage = () => {
   return (
     <LoginPageWrapper>
-      <Title title="Pickle" />
+      <h1>🥒 Pickle</h1>
       <LoginForm />
       <SignupForm />
     </LoginPageWrapper>
