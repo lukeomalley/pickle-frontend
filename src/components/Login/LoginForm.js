@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Error from '../globals/Error';
 import { PrimaryButton } from '../globals/Buttons';
 import SIGN_IN_USER from '../../mutations/SIGN_IN_USER';
-import { setRem, fadeIn } from '../../styles';
+import { setRem, sizes } from '../../styles';
 
 const LoginPage = ({ history }) => {
   const client = useApolloClient();
@@ -32,6 +32,7 @@ const LoginPage = ({ history }) => {
   return (
     <LoginFormWrapper onSubmit={handleLogin}>
       <h3>Login</h3>
+
       {error && <Error message="Incorrect username or password" />}
       <input
         type="text"
@@ -73,24 +74,19 @@ const LoginFormWrapper = styled.form`
   input[type='text']:focus,
   input[type='password']:focus {
     outline: none;
-  }
-
-  button {
-    width: 50%;
-    margin: 0 auto;
-    font-size: ${setRem(12)};
-    border: 1px solid ${props => props.theme.lightGrey};
-    padding: ${setRem(12)} ${setRem(32)};
-    cursor: pointer;
-    ${fadeIn('0%', '0%', '0%', 0.8)}
-
-    &:hover {
-      background: ${props => props.theme.lightGrey};
-    }
+    border: 1px solid ${props => props.theme.accentColor};
   }
 
   h3 {
     text-align: center;
+  }
+
+  @media (max-width: ${sizes.desktop}px) {
+    width: 50%;
+  }
+
+  @media (max-width: ${sizes.tablet}px) {
+    width: 70%;
   }
 `;
 

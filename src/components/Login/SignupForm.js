@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 
-import { setRem, fadeIn } from '../../styles';
+import { PrimaryButton } from '../globals/Buttons';
+import Error from '../globals/Error';
+import { setRem, sizes } from '../../styles';
 import CREATE_USER from '../../mutations/CREATE_USER';
 
 const SignupForm = ({ history }) => {
@@ -28,12 +30,11 @@ const SignupForm = ({ history }) => {
     setPassword('');
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>An error occurred</p>;
   return (
     <SignupFormWrapper onSubmit={handleSignup}>
       <h3>Sign Up</h3>
 
+      {error && <Error message="Username is already taken" />}
       <input
         type="text"
         name="name"
@@ -63,7 +64,7 @@ const SignupForm = ({ history }) => {
         required
         maxLength="40"
       />
-      <button type="submit">Sign Up</button>
+      <PrimaryButton type="submit">Sign Up</PrimaryButton>
     </SignupFormWrapper>
   );
 };
@@ -72,38 +73,34 @@ const SignupFormWrapper = styled.form`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${setRem(20)};
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
 
   input[type='text'],
   input[type='password'] {
-    padding: ${setRem(8)};
+    padding: ${setRem(16)};
     border: none;
     width: 100%;
     font-family: ${props => props.theme.primaryFont};
     font-size: ${setRem(16)};
   }
 
-  input[type='text']:focus {
+  input[type='text']:focus,
+  input[type='password']:focus {
     outline: none;
-  }
-
-  button {
-    width: 50%;
-    margin: 0 auto;
-    font-size: ${setRem(12)};
-    border: 1px solid ${props => props.theme.lightGrey};
-    padding: ${setRem(16)} ${setRem(32)};
-    cursor: pointer;
-    ${fadeIn('0%', '0%', '0%', 0.8)}
-
-    &:hover {
-      background: ${props => props.theme.lightGrey};
-    }
+    border: 1px solid ${props => props.theme.accentColor};
   }
 
   h3 {
     text-align: center;
+  }
+
+  @media (max-width: ${sizes.desktop}px) {
+    width: 50%;
+  }
+
+  @media (max-width: ${sizes.tablet}px) {
+    width: 70%;
   }
 `;
 
