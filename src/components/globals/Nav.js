@@ -29,6 +29,8 @@ const Nav = ({ history }) => {
     error,
   } = useQuery(ME_QUERY);
 
+  const token = localStorage.getItem('token');
+
   if (loading) return null;
   if (error) return null;
   return (
@@ -48,7 +50,7 @@ const Nav = ({ history }) => {
           </button>
         </div>
 
-        <ul className={isOpen ? `nav-links show-nav` : `nav-links`}>
+        <ul className={isOpen ? `nav-links ${token ? 'show-nav' : 'show-small-nav'}` : `nav-links`}>
           {links.map((item, index) => {
             return (
               <li key={index}>
@@ -116,6 +118,10 @@ const NavWrapper = styled.nav`
 
   .show-nav {
     height: 210px;
+  }
+
+  .show-small-nav {
+    height: 110px;
   }
 
   .nav-links a,
