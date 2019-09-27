@@ -14,7 +14,7 @@ const NewPickleForm = ({ categories, history }) => {
   const [optionTwo, setOptionTwo] = useState('');
   const [optionThree, setOptionThree] = useState('');
   const [optionFour, setOptionFour] = useState('');
-  const [categoryId, setCategoryId] = useState(0);
+  const [categoryId, setCategoryId] = useState(categories[0].id);
 
   const [createPickle, { error, loading }] = useMutation(CREATE_PICKLE, {
     onCompleted({ createPickle: { pickle } }) {
@@ -41,6 +41,7 @@ const NewPickleForm = ({ categories, history }) => {
 
   if (loading) return null;
   if (error) return <div>Error</div>;
+  console.log(categoryId);
   return (
     <NewPickleFormWrapper onSubmit={handleSubmit}>
       <Title title="In A Pickle " subtitle="Again, Are We?" />
