@@ -57,7 +57,9 @@ const NewPickleForm = ({ categories, history }) => {
       <div className="categories">
         <select name="category" value={categoryId} onChange={e => setCategoryId(e.target.value)}>
           {categories.map(category => (
-            <option value={category.id}>{category.name}</option>
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
           ))}
         </select>
       </div>
