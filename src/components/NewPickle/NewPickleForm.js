@@ -51,6 +51,7 @@ const NewPickleForm = ({ categories, history }) => {
         onChange={e => setDescription(e.target.value)}
         required
       />
+
       <p>Category</p>
       <div className="categories">
         <select name="category" value={categoryId} onChange={e => setCategoryId(e.target.value)}>
