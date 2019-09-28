@@ -17,11 +17,17 @@ const ModalWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -50%);
   z-index: 1000;
 
   h4 {
     margin-bottom: ${setRem(20)};
+  }
+
+  .buttons {
+    display: grid;
+    width: 50%;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -41,7 +47,7 @@ const RequireLoginModal = ({ message, isShowing, hide }) =>
         <>
           <ModalWrapper>
             <h4>{message}</h4>
-            <div>
+            <div className="buttons">
               <PrimaryButton onClick={hide}>Close</PrimaryButton>
               <Link to="/login">
                 <PrimaryButton>Login</PrimaryButton>

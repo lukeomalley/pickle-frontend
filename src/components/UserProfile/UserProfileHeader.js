@@ -52,7 +52,12 @@ const UserProfileHeaderWrapper = styled.div`
 `;
 
 const UserProfileHeader = ({ user, pickles, me, showEdit, toggleShowEdit }) => {
-  const isMyProfile = user.id === me.id;
+  // if the current user is the same as the profile then we want to show the
+  // icon allowing the user to update their profile
+  const token = localStorage.getItem('token'); // checks to see if the user is logged in
+  let isMyProfile;
+  token ? (isMyProfile = user.id === me.id) : (isMyProfile = false);
+
   return (
     <UserProfileHeaderWrapper>
       <img src={user.imgUrl || profilePic} alt="" />
