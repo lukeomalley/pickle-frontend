@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 
-import { setRem, sizes } from '../../styles';
+import Hr from '../globals/HorizontalRule';
+import { setRem, sizes, setTransition } from '../../styles';
 import { PrimaryButton } from '../globals/Buttons';
 import { useQuery } from '@apollo/react-hooks';
 import ME_QUERY from '../../queries/ME_QUERY';
@@ -31,7 +32,7 @@ const EditUserForm = ({ toggleShowEdit, showEdit }) => {
 
   return (
     <EditUserFormWrapper onSubmit={handleSubmit}>
-      <hr />
+      <Hr />
       <h3>Edit Profile</h3>
 
       <label htmlFor="name">Name:</label>
