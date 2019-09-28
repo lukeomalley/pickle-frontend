@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 
 import { setRem, sizes } from '../../styles';
 import { PrimaryButton } from '../globals/Buttons';
 import { useQuery } from '@apollo/react-hooks';
 import ME_QUERY from '../../queries/ME_QUERY';
+import UPDATE_USER from '../../mutations/UPDATE_USER';
 
 const EditUserForm = ({ toggleShowEdit, showEdit }) => {
   const { data, loading, error } = useQuery(ME_QUERY);
   const { me } = data;
-
+  const [updateUser] = useMutation(UPDATE_USER);
   const [name, setName] = useState(me.name);
   const [bio, setBio] = useState(me.bio);
   const [imgUrl, setImgUrl] = useState(me.imgUrl);
 
   const handleSubmit = e => {
     e.preventDefault();
+    updateUser({
+      variables: {
+        name,
+        email: me.email,
+        username: me.username,
+        bio,
+        imgUrl,
+      },
+    });
   };
 
   return (
@@ -24,7 +35,7 @@ const EditUserForm = ({ toggleShowEdit, showEdit }) => {
       <h3>Edit Profile</h3>
 
       <label htmlFor="name">Name:</label>
-      <input type="text" name="name" value={name} onChange={e => setName(e.target.name)} />
+      <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
 
       <label htmlFor="name">Bio:</label>
       <input type="text" name="bio" value={bio} onChange={e => setBio(e.target.value)} />
@@ -33,7 +44,7 @@ const EditUserForm = ({ toggleShowEdit, showEdit }) => {
       <input type="text" name="imgUrl" value={imgUrl} onChange={e => setImgUrl(e.target.value)} />
 
       <div className="buttons">
-        <PrimaryButton>Save</PrimaryButton>
+        <PrimaryButton onClick={handleSubmit}>Save</PrimaryButton>
         <PrimaryButton onClick={() => toggleShowEdit(!showEdit)}>Cancel</PrimaryButton>
       </div>
     </EditUserFormWrapper>
