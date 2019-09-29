@@ -6,12 +6,24 @@ import { useMutation } from '@apollo/react-hooks';
 import { PrimaryButton } from '../globals/Buttons';
 import DELETE_PICKLE from '../../mutations/DELETE_PICKLE';
 import { setRem } from '../../styles';
+import ALL_PICKLE_QUERY from '../../queries/ALL_PICKLE_QUERY';
 
 const ConfirmDeleteModal = ({ pickle, message, isShowing, hide }) => {
-  const [deletePickle, { error, loading }] = useMutation(DELETE_PICKLE);
+  const [deletePickle] = useMutation(DELETE_PICKLE);
   const deletePost = () => {
     const pickleId = parseInt(pickle.id, 10);
-    deletePickle({ variables: { pickleId } });
+    deletePickle({
+      variables: { pickleId },
+      update: (store, { data }) => {
+        const { pickles } = store.readQuery({ query: ALL_PICKLE_QUERY });
+        store.writeQuery({
+          query: ALL_PICKLE_QUERY,
+          data: {
+            pickles: pickles.filter(pickle => pickle.id !== data.deletePickle.pickle.id),
+          },
+        });
+      },
+    });
     // TODO UPDATE THE CACHE ON DELETE PICKLE
     hide();
   };

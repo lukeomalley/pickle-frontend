@@ -5,7 +5,6 @@ export default gql`
     deletePickle(input: { pickleId: $pickleId }) {
       pickle {
         id
-        description
       }
       errors
     }
