@@ -32,7 +32,7 @@ const NewPickleForm = ({ categories, history }) => {
         store.writeQuery({
           query: ALL_PICKLE_QUERY,
           data: {
-            pickles: [...pickles, data.createPickle.pickle],
+            pickles: [data.createPickle.pickle, ...pickles],
           },
         });
       },
@@ -41,7 +41,6 @@ const NewPickleForm = ({ categories, history }) => {
 
   if (loading) return null;
   if (error) return <div>Error</div>;
-  console.log(categoryId);
   return (
     <NewPickleFormWrapper onSubmit={handleSubmit}>
       <Title title="In A Pickle " subtitle="Again, Are We?" />

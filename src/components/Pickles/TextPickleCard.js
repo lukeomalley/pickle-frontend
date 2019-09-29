@@ -32,7 +32,7 @@ const TextPickleCard = ({ pickle, votedPickles }) => {
   let voted = pickle.id in votedPickles;
   return (
     <TextPickleCardWrapper>
-      <UserBar user={pickle.user} />
+      <UserBar user={pickle.user} pickle={pickle} />
       <Hr />
       <p className="description">{pickle.description}</p>
       <PickleOptions options={pickle.options} voted={voted} />
