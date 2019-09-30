@@ -9,6 +9,7 @@ const CategoriesContainerWrapper = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: ${setRem(20)};
   justify-items: center;
+  margin-bottom: ${setRem(20)};
 `;
 
 const CategoriesContainer = ({ categories }) => {
