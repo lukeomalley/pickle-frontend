@@ -25,9 +25,8 @@ const ModalWrapper = styled.div`
   }
 
   .buttons {
-    display: grid;
-    width: 50%;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-self: center;
   }
 `;
 
