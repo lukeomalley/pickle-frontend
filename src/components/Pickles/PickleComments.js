@@ -9,12 +9,14 @@ const PickleCommentsWrapper = styled.div`
   margin-bottom: ${setRem(8)};
 `;
 
-const PickleComments = ({ comments }) => {
+const PickleComments = ({ comments, quantity }) => {
   return (
     <PickleCommentsWrapper>
       {comments.length === 0
         ? null
-        : comments.map(comment => <PickleComment key={comment.id} comment={comment} />)}
+        : comments
+            .slice(-quantity)
+            .map(comment => <PickleComment key={comment.id} comment={comment} />)}
     </PickleCommentsWrapper>
   );
 };

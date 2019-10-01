@@ -71,7 +71,9 @@ const UserProfileHeader = ({ user, pickles, me, showEdit, toggleShowEdit }) => {
           )}
         </p>
         <p>{user.name}</p>
-        <p>{pickles.length} Pickles</p>
+        <p>
+          {pickles.length} Pickle{pickles.length > 1 && 's'}
+        </p>
         <p>{user.bio}</p>
       </div>
     </UserProfileHeaderWrapper>

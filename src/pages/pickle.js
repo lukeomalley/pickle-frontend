@@ -19,7 +19,10 @@ const PicklePageWrapper = styled.div`
 const ProfilePage = ({ match }) => {
   let { id } = match.params;
   id = parseInt(id, 10);
-  const { loading, data, error } = useQuery(PICKLE_QUERY, { variables: { id } });
+  const { loading, data, error } = useQuery(PICKLE_QUERY, {
+    variables: { id },
+    pollInterval: 1000,
+  });
   if (loading) return null;
   if (error) return <div>Error</div>;
   return (

@@ -16,6 +16,10 @@ export const PrimaryButton = styled.button`
     background: ${props => props.theme.lightGrey};
   }
 
+  &:active {
+    transform: translateY(5px);
+  }
+
   &:focus {
     outline: none;
   }
