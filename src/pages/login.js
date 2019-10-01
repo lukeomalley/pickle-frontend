@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import Title from '../components/globals/Title';
 import LoginForm from '../components/Login/LoginForm';
 import SignupForm from '../components/Login/SignupForm';
 import { setRem, sizes } from '../styles';
@@ -26,7 +26,9 @@ const LoginPageWrapper = styled.div`
 const LoginPage = () => {
   return (
     <LoginPageWrapper>
-      <h1>🥒 Pickle</h1>
+      <Link to="/">
+        <h1>🥒 Pickle</h1>
+      </Link>
       <LoginForm />
       <SignupForm />
     </LoginPageWrapper>
