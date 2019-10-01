@@ -7,8 +7,11 @@ import ME_QUERY from '../../queries/ME_QUERY';
 const PicklePageContainerWrapper = styled.div``;
 
 const PicklePageContainer = ({ pickle }) => {
-  const { data, loading, error } = useQuery(ME_QUERY);
-  const { me } = data;
+  const {
+    data: { me },
+    loading,
+    error,
+  } = useQuery(ME_QUERY);
 
   const createVotedPicklesHash = () => {
     if (!me) return {};

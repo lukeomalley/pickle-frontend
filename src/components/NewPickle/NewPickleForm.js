@@ -126,6 +126,7 @@ const NewPickleFormWrapper = styled.form`
 
   input[type='text']:focus {
     outline: none;
+    border: 1px solid ${props => props.theme.accentColor};
   }
 
   button {
@@ -163,15 +164,16 @@ const NewPickleFormWrapper = styled.form`
     background-size: 0.65em auto, 100%;
   }
 
+  select:focus {
+    outline: none;
+  }
+
   h3 {
     text-align: center;
   }
 
   .categories {
     display: grid;
-
-    input[type='radio'] {
-    }
   }
 
   @media (max-width: ${sizes.desktop}px) {

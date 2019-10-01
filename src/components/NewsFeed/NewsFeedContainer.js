@@ -12,8 +12,11 @@ const NewsFeedWrapper = styled.div`
 `;
 
 const NewsFeedContainer = ({ pickles }) => {
-  const { data, loading, error } = useQuery(ME_QUERY);
-  const { me } = data;
+  const {
+    data: { me },
+    loading,
+    error,
+  } = useQuery(ME_QUERY);
 
   const createVotedPicklesHash = () => {
     if (!me) return {};

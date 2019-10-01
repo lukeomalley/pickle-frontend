@@ -10,8 +10,11 @@ import ME_QUERY from '../../queries/ME_QUERY';
 import UPDATE_USER from '../../mutations/UPDATE_USER';
 
 const EditUserForm = ({ toggleShowEdit, showEdit }) => {
-  const { data, loading, error } = useQuery(ME_QUERY);
-  const { me } = data;
+  const {
+    data: { me },
+    loading,
+    error,
+  } = useQuery(ME_QUERY);
   const [updateUser] = useMutation(UPDATE_USER);
   const [name, setName] = useState(me.name);
   const [bio, setBio] = useState(me.bio);

@@ -45,9 +45,7 @@ const TextPickleCard = ({ pickle, votedPickles }) => {
     <TextPickleCardWrapper>
       <UserBar user={pickle.user} pickle={pickle} />
       <Hr />
-      <Link to={`/pickle/${pickle.id}`}>
-        <p className="description">{pickle.description}</p>
-      </Link>
+      <p className="description">{pickle.description}</p>
       <PickleOptions options={pickle.options} voted={voted} />
       <p className="votes">{pickle.votes} votes</p>
       <PickleComments comments={pickle.comments} quantity={5} />
