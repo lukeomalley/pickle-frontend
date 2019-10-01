@@ -30,7 +30,6 @@ const BrowsePage = () => {
   if (errorTrendingPickles) return <div>Error</div>;
   if (loading) return null;
   if (error) return <div>Error</div>;
-  console.log(trendingPickles);
   return (
     <>
       <Nav />

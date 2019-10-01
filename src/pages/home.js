@@ -19,7 +19,7 @@ const HomeWrapper = styled.div`
 const HomePage = () => {
   const { loading, data, error } = useQuery(ALL_PICKLE_QUERY);
   if (loading) return null;
-  if (error) return <div>Error</div>;
+  if (error) return null;
   return (
     <>
       <Nav />
