@@ -65,7 +65,7 @@ const ModalWrapper = styled.div`
 
   .buttons {
     display: grid;
-    width: 50%;
+    justify-self: center;
     grid-template-columns: 1fr 1fr;
   }
 `;
