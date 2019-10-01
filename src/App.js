@@ -13,6 +13,7 @@ import BrowsePage from './pages/browse';
 import CategoryPage from './pages/category';
 import ProfilePage from './pages/profile';
 import NewPicklePage from './pages/newPickle';
+import PicklePage from './pages/pickle';
 import { lightTheme } from './styles';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/browse/categories/:category" component={CategoryPage} />
+        <Route exact path="/pickle/:id" component={PicklePage} />
         <Route exact path="/new/pickle" component={token ? NewPicklePage : LoginPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/browse" component={BrowsePage} />

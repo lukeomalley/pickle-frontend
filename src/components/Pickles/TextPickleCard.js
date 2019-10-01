@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import UserBar from './UserBar';
 import PickleOptions from './PickleOptions';
@@ -39,7 +40,9 @@ const TextPickleCard = ({ pickle, votedPickles }) => {
     <TextPickleCardWrapper>
       <UserBar user={pickle.user} pickle={pickle} />
       <Hr />
-      <p className="description">{pickle.description}</p>
+      <Link to={`/pickle/${pickle.id}`}>
+        <p className="description">{pickle.description}</p>
+      </Link>
       <PickleOptions options={pickle.options} voted={voted} />
       <p className="votes">{pickle.votes} votes</p>
       <PickleComments comments={pickle.comments} />

@@ -15,10 +15,10 @@ const LoginPage = ({ history }) => {
 
   const [signInUser, { error }] = useMutation(SIGN_IN_USER, {
     onCompleted({ signInUser: { token, user } }) {
-      history.push('/');
       client.resetStore();
-      localStorage.setItem('token', token);
       client.writeData({ data: { isLoggedIn: true, me: user } });
+      localStorage.setItem('token', token);
+      history.push('/');
     },
   });
 
