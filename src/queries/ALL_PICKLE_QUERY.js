@@ -5,6 +5,7 @@ export default gql`
     pickles {
       id
       description
+      votes
       category {
         id
         name

@@ -5,6 +5,7 @@ export default gql`
     trendingPickles {
       id
       description
+      votes
       category {
         id
         name

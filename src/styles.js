@@ -10,7 +10,7 @@ export const lightTheme = {
   mainBlack: '#222',
   mainWhite: '#fff',
   lightGrey: '#e6e6e6',
-  darkGrey: '#222',
+  darkGrey: '#a0a0a0',
   background: '#fafafa',
   mainSpacing: '2px',
   mainWidth: '80vw',

@@ -18,6 +18,11 @@ const TextPickleCardWrapper = styled.div`
   border: 1px solid ${props => props.theme.lightGrey};
   background: ${props => props.theme.mainWhite};
 
+  .votes {
+    color: ${props => props.theme.darkGrey};
+    margin-left: ${setRem(3)};
+  }
+
   .description {
     font-size: ${setRem(24)};
     margin-bottom: ${setRem(10)};
@@ -36,6 +41,7 @@ const TextPickleCard = ({ pickle, votedPickles }) => {
       <Hr />
       <p className="description">{pickle.description}</p>
       <PickleOptions options={pickle.options} voted={voted} />
+      <p className="votes">{pickle.votes} votes</p>
       <PickleComments comments={pickle.comments} />
       <Hr />
       <CommentForm pickle={pickle} />
