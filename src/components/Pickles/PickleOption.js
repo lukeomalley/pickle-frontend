@@ -10,6 +10,7 @@ import CREATE_SELECTION from '../../mutations/CREATE_SELECTION';
 const OptionWrapper = styled.div`
   border: 1px solid ${props => props.theme.lightGrey};
   padding: ${setRem(16)} ${setRem(32)};
+  align-items: center;
   cursor: pointer;
   ${fadeIn('0%', '0%', '0%', 0.8)}
 
