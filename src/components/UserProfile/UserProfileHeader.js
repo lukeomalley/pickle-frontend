@@ -1,9 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import profilePic from '../../static/defaultProfile.png';
 import { FaCog } from 'react-icons/fa';
 
 import { setRem, sizes } from '../../styles';
+import profilePic from '../../static/defaultProfile.png';
+
+const UserProfileHeader = ({ user, pickles, me, showEdit, toggleShowEdit }) => {
+  // if the current user is the same as the profile then we want to show the
+  // icon allowing the user to update their profile
+  const token = localStorage.getItem('token'); // checks to see if the user is logged in
+  let isMyProfile;
+  token ? (isMyProfile = user.id === me.id) : (isMyProfile = false);
+
+  return (
+    <UserProfileHeaderWrapper>
+      <img src={user.imgUrl || profilePic} alt="" />
+      <div className="details">
+        <p className="username">
+          {user.username}{' '}
+          {isMyProfile && (
+            <span>
+              <FaCog onClick={() => toggleShowEdit(!showEdit)}>Edit Profile</FaCog>
+            </span>
+          )}
+        </p>
+        <p>{user.name}</p>
+        <p>
+          {pickles.length} Pickle{pickles.length > 1 && 's'}
+        </p>
+        <p>{user.bio}</p>
+      </div>
+    </UserProfileHeaderWrapper>
+  );
+};
 
 const UserProfileHeaderWrapper = styled.div`
   display: grid;
@@ -50,34 +79,5 @@ const UserProfileHeaderWrapper = styled.div`
     }
   }
 `;
-
-const UserProfileHeader = ({ user, pickles, me, showEdit, toggleShowEdit }) => {
-  // if the current user is the same as the profile then we want to show the
-  // icon allowing the user to update their profile
-  const token = localStorage.getItem('token'); // checks to see if the user is logged in
-  let isMyProfile;
-  token ? (isMyProfile = user.id === me.id) : (isMyProfile = false);
-
-  return (
-    <UserProfileHeaderWrapper>
-      <img src={user.imgUrl || profilePic} alt="" />
-      <div className="details">
-        <p className="username">
-          {user.username}{' '}
-          {isMyProfile && (
-            <span>
-              <FaCog onClick={() => toggleShowEdit(!showEdit)}>Edit Profile</FaCog>
-            </span>
-          )}
-        </p>
-        <p>{user.name}</p>
-        <p>
-          {pickles.length} Pickle{pickles.length > 1 && 's'}
-        </p>
-        <p>{user.bio}</p>
-      </div>
-    </UserProfileHeaderWrapper>
-  );
-};
 
 export default UserProfileHeader;
