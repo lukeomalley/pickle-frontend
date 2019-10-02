@@ -6,9 +6,18 @@ export default gql`
       token
       user {
         id
-        username
         name
+        username
+        email
+        bio
         imgUrl
+        votedPickles {
+          id
+          description
+        }
+        options {
+          id
+        }
       }
       errors
     }
