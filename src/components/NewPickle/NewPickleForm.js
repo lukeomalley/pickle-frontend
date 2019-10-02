@@ -43,7 +43,7 @@ const NewPickleForm = ({ categories, history }) => {
   if (error) return <div>Error</div>;
   return (
     <NewPickleFormWrapper onSubmit={handleSubmit}>
-      <Title title="In A Pickle " subtitle="Again, Are We?" />
+      <Title title="In A " subtitle="Pickle?" />
       <input
         type="text"
         placeholder="Whats your pickle..?"
