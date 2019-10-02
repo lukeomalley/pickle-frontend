@@ -45,6 +45,7 @@ const UserProfileHeaderWrapper = styled.div`
   span {
     font-size: ${setRem(18)};
     cursor: pointer;
+    margin-left: ${setRem(18)};
   }
 
   img {
@@ -72,10 +73,20 @@ const UserProfileHeaderWrapper = styled.div`
     grid-template-columns: 1fr;
     grid-gap: ${setRem(20)};
 
+    span {
+      margin-left: 0;
+    }
+
     .details {
       justify-self: center;
       text-align: center;
       margin-bottom: ${setRem(20)};
+    }
+
+    .username {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: ${setRem(10)};
     }
   }
 `;
