@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { FaTrash } from 'react-icons/fa';
 
+import profilePic from '../../static/defaultProfile.png';
 import ME_QUERY from '../../queries/ME_QUERY';
 import { useModal } from '../globals/useModal';
 import { setRem } from '../../styles';
@@ -26,7 +27,7 @@ const UserBar = ({ user, pickle }) => {
     <>
       <UserBarWrapper>
         <div className="user-details">
-          <img src={user.imgUrl} alt={user.name} />
+          <img src={user.imgUrl || profilePic} alt={user.name} />
           <Link to={`/${user.username}`}>{user.username}</Link>
         </div>
         {token ? me.id === user.id && <FaTrash className="trash" onClick={toggle} /> : null}
