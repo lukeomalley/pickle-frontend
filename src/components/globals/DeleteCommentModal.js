@@ -4,12 +4,29 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/react-hooks';
 
 import { PrimaryButton } from '../globals/Buttons';
-import DELETE_PICKLE from '../../mutations/DELETE_PICKLE';
-import { setRem } from '../../styles';
+import DELETE_COMMENT from '../../mutations/DELETE_COMMENT';
 import ALL_PICKLE_QUERY from '../../queries/ALL_PICKLE_QUERY';
+import { setRem } from '../../styles';
 
-const ConfirmDeleteModal = ({ pickle, message, isShowing, hide }) => {
-  const [deletePickle] = useMutation(DELETE_PICKLE);
+const DeleteCommentModal = ({ comment, message, isShowing, hide }) => {
+  const [deleteComment] = useMutation(DELETE_COMMENT);
+
+  const handleDelete = () => {
+    const commentId = parseInt(comment.id);
+    deleteComment({
+      variables: { id: commentId },
+      update: (store, { data }) => {
+        const { pickles } = store.readQuery(ALL_PICKLE_QUERY);
+        store.writeQuery({
+          query: ALL_PICKLE_QUERY,
+          data: {
+            pickles: pickles.map(pickle => (pickle.id === data.pickle.id ? data.pickle : pickle)),
+          },
+        });
+      },
+    });
+    hide();
+  };
 
   return isShowing
     ? ReactDOM.createPortal(
@@ -18,7 +35,7 @@ const ConfirmDeleteModal = ({ pickle, message, isShowing, hide }) => {
             <h4>{message}</h4>
             <div className="buttons">
               <PrimaryButton onClick={hide}>Close</PrimaryButton>
-              <PrimaryButton onClick={deletePost}>Delete</PrimaryButton>
+              <PrimaryButton onClick={handleDelete}>Delete</PrimaryButton>
             </div>
           </ModalWrapper>
           <ModalOverley onClick={hide} />
@@ -63,4 +80,4 @@ const ModalOverley = styled.div`
   height: 100%;
 `;
 
-export default ConfirmDeleteModal;
+export default DeleteCommentModal;

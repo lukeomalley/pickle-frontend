@@ -20,12 +20,6 @@ const UserBar = ({ user, pickle }) => {
     error,
   } = useQuery(ME_QUERY);
 
-  const handleDelete = () => {
-    // open modal for confirmation of delete
-    toggle();
-    // inside the modal the button will send a delete mutation
-  };
-
   if (loading) return null;
   if (error) return null;
   return (
@@ -35,7 +29,7 @@ const UserBar = ({ user, pickle }) => {
           <img src={user.imgUrl} alt={user.name} />
           <Link to={`/${user.username}`}>{user.username}</Link>
         </div>
-        {token ? me.id === user.id && <FaTrash className="trash" onClick={handleDelete} /> : null}
+        {token ? me.id === user.id && <FaTrash className="trash" onClick={toggle} /> : null}
       </UserBarWrapper>
       <ConfirmDeleteModal
         isShowing={isShowing}

@@ -10,6 +10,7 @@ import ALL_PICKLE_QUERY from '../../queries/ALL_PICKLE_QUERY';
 
 const ConfirmDeleteModal = ({ pickle, message, isShowing, hide }) => {
   const [deletePickle] = useMutation(DELETE_PICKLE);
+
   const deletePost = () => {
     const pickleId = parseInt(pickle.id, 10);
     deletePickle({
@@ -24,7 +25,6 @@ const ConfirmDeleteModal = ({ pickle, message, isShowing, hide }) => {
         });
       },
     });
-    // TODO UPDATE THE CACHE ON DELETE PICKLE
     hide();
   };
 

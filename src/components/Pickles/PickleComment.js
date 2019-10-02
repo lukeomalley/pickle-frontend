@@ -7,11 +7,11 @@ import { FaTimes } from 'react-icons/fa';
 import { setRem, fadeIn } from '../../styles';
 import ME_QUERY from '../../queries/ME_QUERY';
 import { useModal } from '../globals/useModal';
+import DeleteCommentModal from '../globals/DeleteCommentModal';
 
 const CommentWrapper = styled.p`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   overflow-wrap: break-word;
   ${fadeIn('0%', '0%', '0%', 0.2)}
 
@@ -22,6 +22,7 @@ const CommentWrapper = styled.p`
   }
 
   svg {
+    margin-top: ${setRem(3)};
     cursor: pointer;
   }
 `;
@@ -40,15 +41,23 @@ const Comment = ({ comment }) => {
   if (error) return null;
 
   return (
-    <CommentWrapper>
-      <div>
-        <span>
-          <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>
-        </span>
-        {comment.text}
-      </div>
-      {token && me.id === comment.user.id && <FaTimes />}
-    </CommentWrapper>
+    <>
+      <CommentWrapper>
+        <div>
+          <span>
+            <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>
+          </span>
+          {comment.text}
+        </div>
+        {token && me.id === comment.user.id && <FaTimes onClick={toggle} />}
+      </CommentWrapper>
+      <DeleteCommentModal
+        comment={comment}
+        message="Are you sure you want to delete this comment?"
+        isShowing={isShowing}
+        hide={toggle}
+      />
+    </>
   );
 };
 
