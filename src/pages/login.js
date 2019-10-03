@@ -27,7 +27,12 @@ const LoginPage = () => {
   return (
     <LoginPageWrapper>
       <Link to="/">
-        <h1>🥒 Pickle</h1>
+        <h1>
+          <span role="img" aria-label="Pickle Logo">
+            🥒
+          </span>{' '}
+          Pickle
+        </h1>
       </Link>
       <LoginForm />
       <SignupForm />

@@ -9,7 +9,7 @@ import ME_QUERY from '../../queries/ME_QUERY';
 import { useModal } from '../globals/useModal';
 import DeleteCommentModal from '../globals/DeleteCommentModal';
 
-const CommentWrapper = styled.p`
+const CommentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   overflow-wrap: break-word;

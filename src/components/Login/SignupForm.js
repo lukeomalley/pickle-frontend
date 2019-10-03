@@ -10,7 +10,7 @@ import CREATE_USER from '../../mutations/CREATE_USER';
 
 const SignupForm = ({ history }) => {
   const client = useApolloClient();
-  const [createUser, { loading, error }] = useMutation(CREATE_USER, {
+  const [createUser, { error }] = useMutation(CREATE_USER, {
     onCompleted({ createUser: { errors, token, user } }) {
       history.push('/');
       client.resetStore();
