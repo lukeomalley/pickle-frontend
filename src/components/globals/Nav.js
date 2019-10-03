@@ -51,6 +51,11 @@ const Nav = ({ history }) => {
         </div>
 
         <ul className={isOpen ? `nav-links ${token ? 'show-nav' : 'show-small-nav'}` : `nav-links`}>
+          {me && (
+            <Link className="new-pickle" to={`/new/pickle`}>
+              + Pickle
+            </Link>
+          )}
           {links.map((item, index) => {
             return (
               <li key={index}>
@@ -59,7 +64,6 @@ const Nav = ({ history }) => {
             );
           })}
           {!me && <Link to="/login">Login</Link>}
-          {me && <Link to={`/new/pickle`}>New Pickle</Link>}
           {me && <Link to={`/${me.username}`}>{me.username}</Link>}
           {me && <p onClick={handleLogout}>Logout</p>}
         </ul>
@@ -78,6 +82,15 @@ const NavWrapper = styled.nav`
   a,
   p {
     cursor: pointer;
+  }
+
+  .nav-links .new-pickle {
+    color: ${props => props.theme.accentColor};
+    font-weight: bold;
+
+    &:hover {
+      color: ${props => props.theme.mainBlack};
+    }
   }
 
   .nav-header {
