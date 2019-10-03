@@ -92,6 +92,26 @@ export const fadeIn = (start, midPoint, end, time) => {
   `;
 };
 
+export const rotate = ({ time = '0.3s' }) => {
+  const animation = keyframes`
+    0% {
+      transform: rotate(0deg)
+    }
+
+    50% {
+      transform: rotate(180deg)
+    }
+
+    100% {
+      transform: rotate(360deg)
+    }
+  `;
+
+  return css`
+    animation: ${animation} ${time} ease-in-out;
+  `;
+};
+
 export const setShadow = {
   light: 'box-shadow: 6px 10px 34px -7px rgba(0,0,0,0.39);',
   dark: 'box-shadow: 6px 10px 34px -7px rgba(0,0,0,0.62);',
