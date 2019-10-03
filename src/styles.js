@@ -92,18 +92,14 @@ export const fadeIn = (start, midPoint, end, time) => {
   `;
 };
 
-export const rotate = ({ time = '0.3s' }) => {
+export const rotate = ({ time = '0.9s' }) => {
   const animation = keyframes`
     0% {
       transform: rotate(0deg)
     }
 
-    50% {
-      transform: rotate(180deg)
-    }
-
     100% {
-      transform: rotate(360deg)
+      transform: rotate(720deg)
     }
   `;
 

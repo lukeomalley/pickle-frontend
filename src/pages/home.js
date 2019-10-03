@@ -39,7 +39,7 @@ const HomePage = () => {
   const handleRefresh = () => {
     setActive(true);
     refetch();
-    setTimeout(() => setActive(false), 500);
+    setTimeout(() => setActive(false), 900);
   };
 
   return (
